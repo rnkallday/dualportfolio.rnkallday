@@ -1,0 +1,443 @@
+@import url(https://fonts.googleapis.com/css?family=Monoton|Raleway:600,900|Arvo);
+
+.nopre * {
+  transition: none !important;
+  /* to prevent animations while rendering the page */
+}
+
+/* Updated html and body styles to allow page scrolling */
+html {
+  /* overflow-x: hidden; removed as it's better on body */
+}
+
+body {
+  min-height: 100vh; /* Ensures body takes at least full viewport height, allows expansion */
+  background: #0a5d61; /* From hero - this will be the initial background */
+  overflow-x: hidden; /* Prevents horizontal scrollbars from rogue content */
+  /* The original 'height: 100%' and commented 'overflow: hidden' were removed */
+  /* Font styles from scrolling section CSS will be handled separately if needed */
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  height: 100%; /* This might be an issue for scrolling */
+  box-sizing: border-box;
+  padding: 0px;
+  /* z-index might be needed if content overlaps later */
+}
+
+#container {
+  width: 100%;
+  height: 100%; /* This might be an issue for scrolling */
+  margin-top: -0%;
+  margin-left: -50%;
+  overflow: hidden; /* This is for the hero's split panel effect, might conflict with page scroll */
+  position: relative;
+  left: 0px;
+  /* z-index might be needed */
+}
+
+#container.left #left {
+  width: 85%;
+}
+#container.left #left > span {
+  bottom: 35%;
+  font-size: 8em;
+}
+#container.left #left .content {
+  transform: rotate(22.1deg) translateX(0%);
+}
+#container.left .rainbow {
+  transform: perspective(200px) rotateY(20deg) translateX(1%);
+}
+#container.left #right {
+  width: 15%;
+}
+#container.left #right > span {
+  top: 35%;
+  font-size: 4em;
+}
+#container.left #right .content {
+  transform: rotate(22.1deg) translateX(100%);
+}
+#container.left #right > ul {
+  visibility: visible;
+  pointer-events: auto;
+}
+#container.left #right > ul > li {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+#container.right #right {
+  width: 85%;
+}
+#container.right #right > span {
+  top: 66%;
+  font-size: 8em;
+}
+#container.right #right .content {
+  transform: rotate(22.1deg) translateX(-12%);
+}
+#container.right #left {
+  width: 15%;
+}
+#container.right #left > span {
+  bottom: 66%;
+  font-size: 4em;
+}
+#container.right #left > ul {
+  visibility: visible;
+  pointer-events: auto;
+}
+#container.right #left > ul > li {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+#left,
+#right {
+  width: 50%;
+  height: 100%;
+  padding: 40% 0;
+  margin: -40% 0;
+  transform: rotate(-22.1deg);
+  transition: all 0.3s ease-in-out;
+  display: block;
+  cursor: pointer;
+  z-index: 2; /* Hero elements should be on top of scrolling content initially */
+  position: relative;
+}
+
+#left > span,
+#right > span {
+  font-size: 6em;
+  font-family: Monoton, Impact, sans-serif;
+  display: inline-block;
+  position: absolute;
+  width: 0.71em;
+  height: 1em;
+  margin: -0.5em 0;
+  transition: all 0.3s ease-in-out;
+  transform: rotate(22.1deg);
+  z-index: 3;
+}
+
+#left .content,
+#right .content {
+  width: 70%;
+  height: 36%;
+  position: absolute;
+  top: 30%;
+  left: 24%;
+  transform: rotate(22.1deg) translateX(-200%);
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+#left .content h1,
+#left .content h1:after,
+#right .content h1,
+#right .content h1:after {
+  font: 600 1.5em/1 "Raleway", sans-serif;
+  /* color: rgba(0, 0, 0, 0.5); */ /* Base color from hero, might be overridden */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  font-weight: 900;
+  color: #efedce; /* From hero $tycho2 */
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  letter-spacing: 0.1em;
+  padding: 0.2em 0 0.25em 0;
+}
+
+#left .content h1,
+#right .content h1 {
+  font-size: 4em;
+  z-index: 100;
+  text-shadow: 0.04em 0.04em 0 #0a5d61; /* From hero $tycho1 */
+  margin: 0 0 0.01em 0;
+}
+
+#left .content h1:after,
+#right .content h1:after {
+  content: attr(data-shadow-text);
+  color: #11232e; /* From hero $tycho1a */
+  text-shadow: none;
+  font-size: 1em;
+  position: absolute;
+  left: 0.0875em;
+  top: 0.0875em;
+  z-index: -1;
+  mask-image: url(https://f.cl.ly/items/1t1C0W3y040g1J172r3h/mask.png);
+}
+
+#left .content p,
+#left .content ul,
+#left .content td,
+#right .content p,
+#right .content ul,
+#right .content td {
+  color: #efedce; /* From hero $tycho1b */
+  font-family: Raleway;
+}
+
+#left .content p,
+#right .content p {
+  margin-top: 0; /* This is fine, common reset */
+}
+
+#left > ul,
+#right > ul {
+  position: absolute;
+  z-index: 1;
+  bottom: 40%;
+  transform: perspective(300px) rotateY(-41deg) translateX(0);
+  transform-origin: 0% 50%;
+  list-style: none;
+  padding-left: 0;
+  pointer-events: none;
+}
+
+#left > ul li,
+#right > ul li {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateX(150%);
+  opacity: 0;
+  background: #0a5d61; /* From hero $tycho1 */
+}
+
+#left > ul li.second,
+#right > ul li.second {
+  transition-delay: 0.1s;
+}
+#left > ul li.third,
+#right > ul li.third {
+  transition-delay: 0.2s;
+}
+
+#left > ul li a,
+#right > ul li a {
+  display: block;
+  color: #efedce; /* From hero $tycho2 */
+  margin-bottom: 0.5em;
+  padding: 0.5em 2em 0.5em 0.5em;
+  background-color: #0a5d61; /* From hero $tycho1 */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2em;
+  font-family: Arvo, Arial, sans-sarif;
+  transition: all 0.2s ease-in-out;
+  background-image: linear-gradient(90deg, #0a5d61, transparent); /* From hero $tycho1 */
+}
+
+#left > ul li a:hover,
+#right > ul li a:hover {
+  background-image: linear-gradient(90deg, transparent, #11232e); /* From hero $tycho1a */
+  color: #ffe;
+}
+
+#left {
+  float: left;
+  text-align: right;
+  background-color: #0a5d61; /* From hero $tycho1 */
+  color: #efedce; /* From hero $tycho2 */
+  padding-left: 20%;
+  margin-left: -20%;
+}
+
+#left,
+#left > * {
+  transform-origin: 100% 50% !important;
+}
+
+#left > span {
+  right: 0;
+  bottom: 50%; /* From hero $centerval */
+}
+
+#left > ul {
+  right: -1px;
+  transform: perspective(300px) rotateY(41deg) translateX(0);
+}
+
+#left > ul li {
+  transform: translateX(-150%);
+  background: transparent; /* Corrected typo from SCSS */
+  border-right: solid #21111b 1px; /* From hero $tycho2b */
+}
+
+#left > ul li a {
+  padding: 0.5em 0.5em 0.5em 4em;
+  color: #21111b; /* From hero $tycho2b */
+  background-color: #0a5d61; /* From hero $tycho1 */
+  background-image: linear-gradient(90deg, transparent, #efedce); /* From hero $tycho2 */
+}
+
+#left > ul li a:hover {
+  background-color: #f27b3a; /* From hero $tycho2a */
+  background-image: linear-gradient(90deg, transparent, #efedce); /* From hero $tycho2 */
+  color: #11232e; /* From hero $tycho1a */
+}
+
+#left .rainbow {
+  background-image: linear-gradient(
+    #d9b036 25%,
+    #d96b2b 25%,
+    #d96b2b 50%,
+    #731702 50%,
+    #731702 75%,
+    #400707 75%
+  );
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  border: #efedce 1em solid; /* From hero $tycho2 */
+  border-width: 1em 0;
+  transform: perspective(200px) rotateY(20deg) translateX(100%);
+  top: 30%;
+  right: 0px;
+  transform-origin: 100% 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+#left .rainbow.left {
+  left: 0px;
+  right: auto;
+  transform: perspective(200px) rotateY(0deg);
+  transform-origin: 100% 50%;
+}
+
+#right {
+  float: right;
+  text-align: left;
+  background-color: #efedce; /* From hero $tycho2 */
+  color: #0a5d61; /* From hero $tycho1 */
+  padding-right: 20%;
+  margin-right: -20%;
+}
+
+#right,
+#right > * {
+  transform-origin: 0% 50%;
+}
+
+#right > span {
+  text-indent: -0.05em;
+  top: 50%; /* From hero $centerval */
+}
+
+#right > ul li {
+  margin-left: -2px;
+  border-left: solid 1px #366; /* Hardcoded color from hero SCSS */
+}
+
+#right .content {
+  top: 40%;
+  width: 60%;
+  transform: rotate(22.1deg) translateX(200%);
+}
+
+#right .content h1 {
+  color: #21111b; /* From hero $tycho2b */
+  text-shadow: 0.04em 0.04em 0 #efedce; /* From hero $tycho2 */
+}
+
+#right .content h1:after {
+  color: #f27b3a; /* From hero $tycho2a */
+}
+
+#right .content p {
+  color: #21111b; /* From hero $tycho2b */
+}
+
+/* CSS from CodePen 2 (https://codepen.io/GreenSock/pen/JjQYqRO) */
+/* Potential conflict: body background-color and color from hero vs. scrolling sections */
+/* The body rule from CodePen 2 is mostly fine but we need to be careful with hero styles */
+body {
+  /* background-color: #222; */ /* Hero section has its own background, this might be overridden by GSAP later or needs sections to have their own bg */
+  /* color: #fff; */ /* Hero section has its own text colors */
+  font-size: 24px; /* Base font size for scrolling sections */
+  line-height: 1.4; /* Base line height for scrolling sections */
+  font-weight: 400; /* Base font weight for scrolling sections */
+}
+
+/* p tag styling from CodePen 2, ensure it doesn't negatively impact hero's <p> */
+p {
+  /* margin-top: 0; */ /* Already set by hero CSS, this is fine */
+  /* color: #fff; */ /* This will apply to all p tags unless overridden. Hero p has specific color. */
+}
+
+/* h1, h2 styling from CodePen 2 */
+/* Potential conflict: Hero h1 has very specific styling. Scroller h1 should be distinct */
+/* It's better to scope these to .regular-section or .panel */
+.regular-section h1, .regular-section h2, .panel h1, .panel h2 {
+  color: white;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+/* Remove generic h1, h2 to avoid conflict with Hero */
+/* h1,
+h2 {
+  color: white; 
+  font-weight: 400;
+  margin-bottom: 0;
+} */
+
+.regular-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* Added for consistency */
+}
+.regular-section.three {
+  /* height: 100vh; */ /* Already defined in .regular-section */
+  /* width: 100%; */ /* Already defined in .regular-section */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  padding: 20px;
+  background-color: grey; /* Example, each section can have its own bg */
+}
+/* Added for sections one, two, four for clarity */
+.regular-section.one, .regular-section.two, .regular-section.four {
+    /* Add specific backgrounds or styles if needed */
+}
+
+
+.horizontal-container {
+  width: 300%; /* 3 panels, each 100% width of viewport */
+  display: flex;
+  flex-wrap: nowrap;
+  /* position: relative; */ /* May be needed for pinning behavior with GSAP */
+}
+.panel {
+  width: 100%; /* Each panel is 100% of its parent (.horizontal-container / 3) = viewport width */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  padding: 20px;
+  box-sizing: border-box; /* Added for consistency */
+}
+.blue {
+  background-color: blue;
+}
+.red {
+  background-color: red;
+}
+.grey { /* This is a panel *within* horizontal-container, distinct from regular-section.three */
+  background-color: dimgray; /* Changed from 'grey' to avoid confusion with .regular-section.three */
+}
+.pause-scroll {
+  height: 5px;
+  width: 100%;
+  background-color: yellow;
+}
