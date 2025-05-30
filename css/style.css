@@ -2,12 +2,12 @@
 
 .nopre * {
   transition: none !important;
-  /* to prevent animations while rendering the page */
+  /* to prevent rendering the page */
 }
 
 /* Updated html and body styles to allow page scrolling */
 html {
-  /* overflow-x: hidden; removed as it's better on body */
+  height: 100%;
 }
 
 body {
@@ -79,6 +79,7 @@ body {
   font-size: 8em;
 }
 #container.right #right .content {
+  #container.right #right .content {
   transform: rotate(22.1deg) translateX(-12%);
 }
 #container.right #left {
@@ -139,8 +140,12 @@ body {
 
 #left .content h1,
 #left .content h1:after,
+#left .content h2,
+#left .content h2:after,
 #right .content h1,
-#right .content h1:after {
+#right .content h1:after,
+#right .content h2,
+#right .content h2:after {
   font: 600 1.5em/1 "Raleway", sans-serif;
   /* color: rgba(0, 0, 0, 0.5); */ /* Base color from hero, might be overridden */
   text-align: center;
@@ -163,8 +168,18 @@ body {
   margin: 0 0 0.01em 0;
 }
 
+#left .content h2,
+#right .content h2 {
+  font-size: 3em;
+  z-index: 100;
+  text-shadow: 0.04em 0.04em 0 #0a5d61; /* From hero $tycho1 */
+  margin: 0 0 0.5em 0;
+}
+
 #left .content h1:after,
-#right .content h1:after {
+#right .content h1:after,
+#left .content h2:after,
+#right .content h2:after {
   content: attr(data-shadow-text);
   color: #11232e; /* From hero $tycho1a */
   text-shadow: none;
@@ -173,6 +188,7 @@ body {
   left: 0.0875em;
   top: 0.0875em;
   z-index: -1;
+  -webkit-mask-image: url(https://f.cl.ly/items/1t1C0W3y040g1J172r3h/mask.png);
   mask-image: url(https://f.cl.ly/items/1t1C0W3y040g1J172r3h/mask.png);
 }
 
@@ -347,7 +363,16 @@ body {
   text-shadow: 0.04em 0.04em 0 #efedce; /* From hero $tycho2 */
 }
 
+#right .content h2 {
+  color: #21111b; /* From hero $tycho2b */
+  text-shadow: 0.04em 0.04em 0 #efedce; /* From hero $tycho2 */
+}
+
 #right .content h1:after {
+  color: #f27b3a; /* From hero $tycho2a */
+}
+
+#right .content h2:after {
   color: #f27b3a; /* From hero $tycho2a */
 }
 
@@ -368,17 +393,21 @@ body {
 
 /* p tag styling from CodePen 2, ensure it doesn't negatively impact hero's <p> */
 p {
-  /* margin-top: 0; */ /* Already set by hero CSS, this is fine */
-  /* color: #fff; */ /* This will apply to all p tags unless overridden. Hero p has specific color. */
+  margin-top: 0;
+  color: #fff;
 }
 
-/* h1, h2 styling from CodePen 2 */
-/* Potential conflict: Hero h1 has very specific styling. Scroller h1 should be distinct */
-/* It's better to scope these to .regular-section or .panel */
+/* Override hero specific p styles - these should keep their original styles */
+#left .content p, #right .content p {
+  color: inherit; /* Use the colors defined earlier for these elements */
+}
+
+/* h1, h2 styling for scrolling sections */
 .regular-section h1, .regular-section h2, .panel h1, .panel h2 {
   color: white;
   font-weight: 400;
   margin-bottom: 0;
+  font-family: 'Raleway', sans-serif;
 }
 /* Remove generic h1, h2 to avoid conflict with Hero */
 /* h1,
@@ -401,14 +430,14 @@ h2 {
   /* width: 100%; */ /* Already defined in .regular-section */
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 20px;
   background-color: grey; /* Example, each section can have its own bg */
 }
 /* Added for sections one, two, four for clarity */
 .regular-section.one, .regular-section.two, .regular-section.four {
-    /* Add specific backgrounds or styles if needed */
+    background-color: #333; /* Dark background for contrast */
 }
 
 
@@ -416,14 +445,14 @@ h2 {
   width: 300%; /* 3 panels, each 100% width of viewport */
   display: flex;
   flex-wrap: nowrap;
-  /* position: relative; */ /* May be needed for pinning behavior with GSAP */
+  position: relative; /* Needed for pinning behavior with GSAP */
 }
 .panel {
   width: 100%; /* Each panel is 100% of its parent (.horizontal-container / 3) = viewport width */
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 20px;
   box-sizing: border-box; /* Added for consistency */
 }
