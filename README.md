@@ -26,6 +26,7 @@ Each section uses GSAP animations for content navigation, with both horizontal a
 - Ensured consistent styling between Creative and AI sections
 
 ### JavaScript Fixes
+
 - Updated deprecated jQuery `$(window).load()` function to the modern `$(window).on('load', ...)` syntax
 - Improved GSAP initialization code:
   - Added proper error handling to check if GSAP and ScrollTrigger are loaded
