@@ -1,0 +1,18 @@
+{
+  "name": "dualportfolio.rnkallday",
+  "version": "1.0.0",
+  "description": "## Project Overview A dual-portfolio website with a GSAP-powered hero landing page that splits visitors into two sections: 1. Creative Work 2. AI Work",
+  "main": "ScrollTrigger.min.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}
