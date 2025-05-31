@@ -22,6 +22,7 @@ $("#container > div").click(function () {
   } else {
     $("#container").removeClass().addClass($(this).attr("id"));
   }
+  });
 });
 
 $("#container > div > ul").click(function (e) {
@@ -67,50 +68,54 @@ $(document).ready(function() {
         console.log("Found " + containers.length + " horizontal containers");
 
         containers.forEach((container) => {
-        console.log("ScrollTrigger registered successfully");
+          try {
+            console.log("ScrollTrigger registered successfully");
             if (process.env.NODE_ENV === 'development') {
               console.log("No panels found in container");
             }
-          
-          // Initialize panels by selecting child elements of the container
-          const panels = gsap.utils.toArray(container.querySelectorAll(".panel"));
-          
-          // Skip if no panels found
-          if (panels.length === 0) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log("Setting up ScrollTrigger for " + panels.length + " panels");
-          }
-            return;
-          }
-          
-          console.log("Setting up ScrollTrigger for " + panels.length + " panels");
-          
-          gsap.to(panels, {
-            xPercent: -100 * (panels.length - 1),
-            ease: "none",
-            scrollTrigger: {
-              trigger: container,
-              start: "top top",
-              anticipatePin: 1,
-              markers: process.env.NODE_ENV === 'development', // Enable markers only in development
-              onUpdate: (self) => {
-                console.log("ScrollTrigger progress: " + self.progress.toFixed(2));
+            
+            // Initialize panels by selecting child elements of the container
+            const panels = gsap.utils.toArray(container.querySelectorAll(".panel"));
+            
+            // Skip if no panels found
+            if (panels.length === 0) {
+              if (process.env.NODE_ENV === 'development') {
+                console.log("Setting up ScrollTrigger for " + panels.length + " panels");
               }
+              return;
             }
-          });
-        if (process.env.NODE_ENV === 'development') {
-          console.log("GSAP ScrollTrigger initialized successfully");
-        }
-        
-        // Initialize any additional animations or sections as needed
-        // (add your code here if needed)
-        } // End of containers.forEach
+            
+            console.log("Setting up ScrollTrigger for " + panels.length + " panels");
+            
+            gsap.to(panels, {
+              xPercent: -100 * (panels.length - 1),
+              ease: "none",
+              scrollTrigger: {
+                trigger: container,
+                start: "top top",
+                anticipatePin: 1,
+                markers: process.env.NODE_ENV === 'development', // Enable markers only in development
+                onUpdate: (self) => {
+                  console.log("ScrollTrigger progress: " + self.progress.toFixed(2));
+                }
+              }
+            });
+            if (process.env.NODE_ENV === 'development') {
+              console.log("GSAP ScrollTrigger initialized successfully");
+            }
+            
+            // Initialize any additional animations or sections as needed
+            // (add your code here if needed)
+          } catch (error) {
+            console.error("Error initializing GSAP for container:", container, "with panels:", panels, "Error details:", error);
+          }
+        }); // End of containers.forEach
       } catch (error) {
-        console.error("Error initializing GSAP for container:", container, "with panels:", panels, "Error details:", error);
+        console.error("Error setting up GSAP containers:", error);
       }
+    } else {
+      console.error("GSAP not loaded correctly. Check script tags.");
+      alert("GSAP failed to load. Please ensure the GSAP library is included in your HTML file and try refreshing the page.");
     }
-  } else {
-    console.error("GSAP not loaded correctly. Check script tags.");
-    alert("GSAP failed to load. Please ensure the GSAP library is included in your HTML file and try refreshing the page.");
   }
 });
