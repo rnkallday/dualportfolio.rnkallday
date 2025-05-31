@@ -15,7 +15,6 @@ $(window).on('load', function () {
   } else {
     console.warn('No element with class "wrapper" found.');
   }
-});
 
 $("#container > div").click(function () {
   if ($("#container").attr("class") == $(this).attr("id")) {
