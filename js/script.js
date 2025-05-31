@@ -103,6 +103,7 @@ $(document).ready(function() {
         }
         
         // Initialize any additional animations or sections as needed
+        }
       } catch (error) {
         console.error("Error initializing GSAP for container:", container, "with panels:", panels, "Error details:", error);
       }
