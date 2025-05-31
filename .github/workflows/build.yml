@@ -29,8 +29,14 @@ jobs:
       run: npm test
       continue-on-error: true
       
+    - name: Debug - List build directory contents
+      run: |
+        ls -la dist/
+        echo "Build directory contents:"
+        find dist -type f | sort
+      
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.0
       with:
         name: dist-files
         path: dist/
