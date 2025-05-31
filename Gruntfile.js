@@ -40,16 +40,16 @@ module.exports = function(grunt) {
   });
 
   // Load plugins
-  // Note: These would need to be installed via npm
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  // Default task - for now just log a message since we haven't installed the plugins
+  // Default task - log a message and show available tasks
   grunt.registerTask('default', function() {
     grunt.log.writeln('Grunt default task running!');
-    grunt.log.writeln('To fully use Grunt, install plugins with:');
-    grunt.log.writeln('npm install grunt-contrib-concat grunt-contrib-copy grunt-contrib-clean --save-dev');
+    grunt.log.writeln('Available tasks:');
+    grunt.log.writeln('- build: Clean, concat, and copy files to dist folder');
+    grunt.log.writeln('- clean: Remove the dist folder');
   });
 
   // Build task
