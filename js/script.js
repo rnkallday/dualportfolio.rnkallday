@@ -1,7 +1,11 @@
 // Hero section JavaScript (from CodePen 1: https://codepen.io/rnkallday/pen/myJyvwg)
 // Updated to use the modern jQuery on('load') method instead of the deprecated load() method
 
+// Debug messages to console
+console.log("Script loading...");
+
 $(window).on('load', function () {
+  console.log("Window loaded, removing nopre class");
   $(".wrapper").removeClass("nopre");
 });
 
