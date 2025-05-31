@@ -104,7 +104,7 @@ $(document).ready(function() {
         
         // Initialize any additional animations or sections as needed
         // (add your code here if needed)
-      } // End of containers.forEach
+        } // End of containers.forEach
       } catch (error) {
         console.error("Error initializing GSAP for container:", container, "with panels:", panels, "Error details:", error);
       }
